@@ -36,7 +36,7 @@ class BaseModel():
         """Simply prints class name, id, dict
         """
         return(
-                "[" +  __class__.__name__ + "] (" +
+                "[" + __class__.__name__ + "] (" +
                 str(self.id), ") " + str(self.__dict__))
 
     def save(self):
