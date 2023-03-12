@@ -4,7 +4,6 @@ attributes/methods for other classes
 """
 from uuid import uuid4
 from datetime import datetime
-import models
 
 
 class BaseModel():
