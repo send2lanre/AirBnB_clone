@@ -5,7 +5,11 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
-
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+from models.state import State
 
 class HBNBCommand(cmd.Cmd):
     """CLI Class"""
@@ -15,11 +19,11 @@ class HBNBCommand(cmd.Cmd):
             'Place': Place, 'Amenity': Amenity,
             'Review': Review, 'State': State}
 
-    def do_quit(self):
+    def do_quit(self, arg):
         """quit method"""
         exit()
 
-    def do_EOF(self):
+    def do_EOF(self, arg):
         """exit method"""
         print('')
         exit()
@@ -70,11 +74,11 @@ class HBNBCommand(cmd.Cmd):
         """deletes an instance of the
         base class based on the id
         """
+        args = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
             return
-        args = arg.split()
-        elif args[0] not in self.class_handles.keys():
+        elif args[0] not in self.class_handles:
             print("class doesn't exist")
             return
         elif args > 1:
@@ -103,29 +107,29 @@ class HBNBCommand(cmd.Cmd):
         """updates an instance based on
         class name and id
         """
+        args = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
-        args = arg.split()
-    elif args[0] not in self.class_handles.keys():
-        print("class doesn't exist")
-        return
-    elif len(args) == 1:
-        print("** instance id missing **")
-    elif len(args) > 1:
-        key_id = args[0] + '.' + args[1]
-        if key_id in storage.all():
-            if len(args) > 2:
-                if len(args) == 3:
-                    print("** value missing **")
-                else:
-                    setattr(storage.all()[key_id],
+        elif args[0] not in self.class_handles:
+            print("class doesn't exist")
+            return
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif len(args) > 1:
+            key_id = args[0] + '.' + args[1]
+            if key_id in storage.all():
+                if len(args) > 2:
+                    if len(args) == 3:
+                        print("** value missing **")
+                    else:
+                        setattr(storage.all()[key_id],
                             arg[2],
                             arg[3][1:-1])
-                    storage.all()[key].save()
+                        storage.all()[key].save()
+                else:
+                    print("** attribute name missing **")
             else:
-                print("** attribute name missing **")
-        else:
-            print("** no instance found **")
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
