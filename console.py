@@ -6,23 +6,28 @@ from models.base_model import BaseModel
 from models import storage
 from models.user import User
 
+
 class HBNBCommand(cmd.Cmd):
     """CLI Class"""
     prompt: '(hbnb)'
-    class_handles = {'BaseModel': BaseModel, 'User': User,
-            'City': City, 'Place': Place, 'Amenity': Amenity,
-            'Review': Review,
-            'State': State}
+    class_handles = {
+            'BaseModel': BaseModel, 'User': User, 'City': City,
+            'Place': Place, 'Amenity': Amenity,
+            'Review': Review, 'State': State}
+
     def do_quit(self):
         """quit method"""
         exit()
+
     def do_EOF(self):
         """exit method"""
         print('')
         exit()
+
     def emptyline(self):
         """override default empty line"""
         pass
+
     def do_create(self, arg):
         """creates an instance of the
         base class
@@ -39,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
                     print(new.id)
                 else:
                     print("** class doesn't exist **")
+
     def do_show(self, arg):
         """shows a particular instance
         of a class based on id
@@ -57,8 +63,9 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[key_id])
                 else:
                     print("** no instance found **")
-	    else:
+            else:
                 print("** instance id missing **")
+
     def do_destroy(self, arg):
         """deletes an instance of the
         base class based on the id
@@ -78,8 +85,9 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
                 return
-	else:
+        else:
             print("** instance id missing **")
+
     def do_all(self, arg):
         """prints all instances
         irrespective of class name
@@ -90,6 +98,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print([str(a) for b, a in storage.all().items() if arg in b])
+
     def do_update(self, id):
         """updates an instance based on
         class name and id
@@ -113,10 +122,11 @@ class HBNBCommand(cmd.Cmd):
                             arg[2],
                             arg[3][1:-1])
                     storage.all()[key].save()
-	    else:
+            else:
                 print("** attribute name missing **")
         else:
             print("** no instance found **")
 
+
 if __name__ == '__main__':
-	HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
