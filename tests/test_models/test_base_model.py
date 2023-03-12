@@ -59,7 +59,9 @@ class test_for_base_model(unittest.TestCase):
                      }
 
         object_test = BaseModel(**dictonary)
-        out = "[{}] ({}) {}\n".format(type(object_test).__name__, object_test.id, object_test.__dict__)
+        out = "[{}] ({}) {}\n".format(
+                type(object_test).__name__, object_test.id,
+                object_test.__dict__)
 
     def test_to_dict(self):
         """ check dict """
@@ -69,8 +71,12 @@ class test_for_base_model(unittest.TestCase):
         self.assertEqual(n_dict['id'], object_test.id)
         self.assertEqual(n_dict['score'], 300)
         self.assertEqual(n_dict['__class__'], 'BaseModel')
-        self.assertEqual(n_dict['created_at'], object_test.created_at.isoformat())
-        self.assertEqual(n_dict['updated_at'], object_test.updated_at.isoformat())
+        self.assertEqual(
+                n_dict['created_at'],
+                object_test.created_at.isoformat())
+        self.assertEqual(
+                n_dict['updated_at'],
+                object_test.updated_at.isoformat())
 
         self.assertEqual(type(n_dict['created_at']), str)
         self.assertEqual(type(n_dict['created_at']), str)
