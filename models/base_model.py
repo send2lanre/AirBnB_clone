@@ -37,7 +37,7 @@ class BaseModel():
         """
         return(
                 "[" + __class__.__name__ + "] (" +
-                str(self.id), ") " + str(self.__dict__))
+                str(id) + ") " + str(self.__dict__))
 
     def save(self):
         """save"""

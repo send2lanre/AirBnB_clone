@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
         """shows a particular instance
         of a class based on id
         """
-        if len(arg == 0):
+        if len(arg) == 0:
             print(" **class name missing **")
             return
         if arg:
@@ -82,10 +82,10 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in self.class_handles:
             print("class doesn't exist")
             return
-        elif args > 1:
+        elif len(args) > 1:
             key_id = args[0] + '.' + args[1]
             if key_id in storage.all():
-                storage.all().pop(key)
+                storage.all().pop(key_id)
                 storage.save()
             else:
                 print("** no instance found **")
@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print([str(a) for b, a in storage.all().items() if arg in b])
 
-    def do_update(self, id):
+    def do_update(self, arg):
         """updates an instance based on
         class name and id
         """
