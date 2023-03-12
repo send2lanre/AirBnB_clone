@@ -14,7 +14,7 @@ from models.state import State
 
 class HBNBCommand(cmd.Cmd):
     """CLI Class"""
-    prompt: '(hbnb)'
+    prompt = '(hbnb) '
     class_handles = {
             'BaseModel': BaseModel, 'User': User, 'City': City,
             'Place': Place, 'Amenity': Amenity,
