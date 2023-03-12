@@ -59,8 +59,8 @@ class test_for_base_model(unittest.TestCase):
                      }
 
         object_test = BaseModel(**dictonary)
-        out = "[{}] ({}) {}\n".format(
-                type(object_test).__name__, object_test.id,
+        out = "[{}] {}\n".format(
+                type(object_test).__name__,
                 object_test.__dict__)
 
     def test_to_dict(self):
