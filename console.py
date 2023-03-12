@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models.state import State
 
+
 class HBNBCommand(cmd.Cmd):
     """CLI Class"""
     prompt: '(hbnb)'
@@ -122,10 +123,10 @@ class HBNBCommand(cmd.Cmd):
                     if len(args) == 3:
                         print("** value missing **")
                     else:
-                        setattr(storage.all()[key_id],
-                            arg[2],
-                            arg[3][1:-1])
-                        storage.all()[key].save()
+                        setattr(
+                                storage.all()[key_id],
+                                arg[2], arg[3][1:-1])
+                        storage.all()[key_id].save()
                 else:
                     print("** attribute name missing **")
             else:
