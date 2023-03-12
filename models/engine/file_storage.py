@@ -15,7 +15,7 @@ from models.place import Place
 
 class FileStorage:
     """Serialization and deserialization"""
-    __file.path = 'file.json'
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):
@@ -27,14 +27,12 @@ class FileStorage:
         with key <obj classname>.id
         """
         FileStorage.__objects[
-                obj.__class__.__name__ + "." + str(obj.id)]
-        = obj
+                obj.__class__.__name__ + "." + str(obj.id)] = obj
 
     def save(self):
         """Serializes python file"""
         with open(
-                FileStorage.__file_path, 'w', encoding='utf-8')
-        as json_file:
+                FileStorage.__file_path, 'w', encoding='utf-8') as json_file:
             new_dict = {
                     key: obj.to_dict() for key, obj in
                     FileStorage.__objects.items()}

@@ -8,10 +8,10 @@ import models
 
 
 class BaseModel():
-    """This is the base class"""
+    """This is the base claiss"""
     def __init__(self, *args, **kwargs):
         """Constructor"""
-        if kwargs is not None:
+        if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':
                     continue
@@ -24,7 +24,7 @@ class BaseModel():
                 if 'created_at' not in kwargs.keys():
                     self.created_at = datetime.now()
                 if 'updated_at' not in kwargs.keys():
-                    self_updated_at = datetime.now()
+                    self.updated_at = datetime.now()
                     setattr(self, key, value)
         else:
             self.id = str(uuid4())

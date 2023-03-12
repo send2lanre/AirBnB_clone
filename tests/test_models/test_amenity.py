@@ -3,7 +3,7 @@
 import unittest
 import pep8
 from models.amenity import Amenity
-
+from models.base_model import BaseModel
 
 class Amenity_testing(unittest.TestCase):
     """ check BaseModel """
